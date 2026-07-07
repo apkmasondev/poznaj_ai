@@ -1,0 +1,11 @@
+# Pliki systemowe i IDE
+.DS_Store
+.vscode/
+.gemini/
+
+# Dokumenty robocze i briefy
+zasady_agenta_2026.md
+brief_strona_ai.md
+
+# Ewentualne logi
+npm-debug.log

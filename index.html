@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jak zacząć korzystać z AI? Twoja Opowieść</title>
+    <meta name="description"
+        content="Prosty, przyjazny przewodnik dla osób, które nigdy nie używały AI. Krok po kroku przez świat sztucznej inteligencji.">
+    <!-- Meta tags dla SEO i Social Media -->
+    <meta property="og:title" content="Jak zacząć korzystać z AI? Twoja Opowieść">
+    <meta property="og:description"
+        content="Prosty, przyjazny przewodnik dla osób, które nigdy nie używały AI. Krok po kroku przez świat sztucznej inteligencji.">
+    <meta property="og:image" content="https://poznaj-ai.pl/images/og-preview.jpg">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://poznaj-ai.pl/">
+
+    <!-- Theme color dla przeglądarek mobilnych -->
+    <meta name="theme-color" content="#fdfbf7" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1a1716" media="(prefers-color-scheme: dark)">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    </noscript>
+</head>
+
+<body>
+    <!-- Świecące tło Aurora w tle (efekt WOW) -->
+    <div class="aurora-bg" aria-hidden="true">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+        <div class="blob blob-5"></div>
+        <div class="blob blob-mouse"></div>
+    </div>
+
+    <!-- Dynamiczny reflektor śledzący kursor (Mouse Spotlight) -->
+    <div class="mouse-spotlight" aria-hidden="true"></div>
+
+    <header class="sticky-nav">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="favicon.svg" alt="Logo" class="logo-icon" width="28" height="28">
+                <span>Poznaj AI</span>
+            </a>
+            <div class="nav-actions">
+                <nav aria-label="Główna nawigacja">
+                    <ul>
+                        <li><a href="#start" class="btn-nav">Rozpocznij</a></li>
+                    </ul>
+                </nav>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Przełącz motyw" title="Przełącz motyw">
+                    <span class="icon-sun premium-icon"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="4" />
+                            <path d="M12 2v2" />
+                            <path d="M12 20v2" />
+                            <path d="m4.93 4.93 1.41 1.41" />
+                            <path d="m17.66 17.66 1.41 1.41" />
+                            <path d="M2 12h2" />
+                            <path d="M20 12h2" />
+                            <path d="m6.34 17.66-1.41 1.41" />
+                            <path d="m19.07 4.93-1.41 1.41" />
+                        </svg></span>
+                    <span class="icon-moon premium-icon"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+                        </svg></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Sekcja Hero (Początek) -->
+        <section id="hero" class="hero">
+            <div class="container hero-inner">
+                <div class="hero-content">
+                    <h1 class="reveal-text">
+                        Hej, jeszcze nie<br>
+                        rozmawiasz
+                        <span class="highlight-container">z AI?<svg class="underline-svg" viewBox="0 0 150 15"
+                                preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5,10 Q75,14 145,8" fill="none" stroke-width="4" stroke-linecap="round" />
+                            </svg></span>
+                    </h1>
+                    <p class="subtitle reveal-text-delay-1">To jest poradnik dla zupełnie początkujących. Zamiast
+                        nudnych instrukcji, zapraszam Cię na krótką wędrówkę, podczas której krok po kroku odkryjesz, o
+                        co w tym wszystkim chodzi. Przewiń w dół, by zacząć!</p>
+                </div>
+
+                <div class="hero-visual reveal-text-delay-2">
+                    <div class="hero-blob-bg" aria-hidden="true"></div>
+                    <div class="hero-chat-wrapper float-anim">
+                        <div class="hero-chat-bubble glass">
+                            <span class="chat-icon premium-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                    height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+                                    <path d="M5 3v4" />
+                                    <path d="M19 17v4" />
+                                    <path d="M3 5h4" />
+                                    <path d="M17 19h4" />
+                                </svg></span>
+                            <span class="typewriter-text" id="hero-typewriter"></span><span class="cursor">|</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll-indicator reveal-text-delay-2">
+                <span>Zaczynamy</span>
+                <div class="arrow-down">↓</div>
+            </div>
+        </section>
+
+        <!-- Główny Kontener Opowieści -->
+        <section id="start" class="story-section">
+            <div class="story-container">
+
+                <!-- Centralna linia i jej maska odsłaniająca kropeczki w miarę scrolla -->
+                <div class="story-line-wrapper">
+                    <!-- Kropkowana linia tła -->
+                    <div class="story-line-dashed"></div>
+                    <!-- Linia rysująca się -->
+                    <div class="story-line-fill"></div>
+                </div>
+
+                <!-- Przystanek 1 -->
+                <article class="story-step left hidden-step">
+                    <div class="step-marker">
+                        <div class="marker-pulse"></div>
+                        <span>1</span>
+                    </div>
+                    <div class="step-content">
+                        <h3>Wybierz jedno narzędzie</h3>
+                        <p>Na początek wędrówki nie potrzebujesz wielkiego ekwipunku. Nie musisz znać wszystkich
+                            dostępnych modeli i aplikacji. Jedno darmowe narzędzie wystarczy. Najpopularniejsze to
+                            <strong>ChatGPT</strong>, <strong>Gemini</strong> (od Google) lub <strong>Claude</strong>.
+                            Wybierz dowolne z nich.</p>
+                    </div>
+                    <div class="step-image-wrapper">
+                        <img src="images/step_choose.webp" alt="Ilustracja wyboru narzędzia AI" class="step-round-img"
+                            loading="lazy" width="320" height="320">
+                    </div>
+                </article>
+
+                <!-- Przystanek 2 -->
+                <article class="story-step right hidden-step">
+                    <div class="step-marker">
+                        <div class="marker-pulse"></div>
+                        <span>2</span>
+                    </div>
+                    <div class="step-content">
+                        <h3>Pierwsze kroki: Zadaj pytanie</h3>
+                        <p>Zamiast szukać skomplikowanych komend, po prostu napisz do AI tak, jakbyś rozmawiał z żywym
+                            ekspertem. Takie zapytanie w branży nazywamy <strong>promptem</strong>. Pisz naturalnie, bez
+                            żargonu:</p>
+                        <ul>
+                            <li><em>"Wytłumacz mi, jak działa fotowoltaika w 3 prostych zdaniach."</em></li>
+                            <li><em>"Zaproponuj szybki obiad z makaronu i pomidorów."</em></li>
+                        </ul>
+                    </div>
+                    <div class="step-image-wrapper">
+                        <img src="images/step_chat.webp" alt="Ilustracja rozmowy z asystentem AI" class="step-round-img"
+                            loading="lazy" width="320" height="320">
+                    </div>
+                </article>
+
+                <!-- Przystanek 3 -->
+                <article class="story-step left hidden-step">
+                    <div class="step-marker">
+                        <div class="marker-pulse"></div>
+                        <span>3</span>
+                    </div>
+                    <div class="step-content">
+                        <h3>Rozmowa na wyższym poziomie</h3>
+                        <p>Gdy poczujesz się pewniej, zacznij dodawać więcej szczegółów. Dobra wiadomość do AI powinna
+                            opisywać Twoją sytuację, cel i to, jak ma wyglądać odpowiedź.</p>
+                        <div class="compare-box">
+                            <div class="bad">
+                                <strong>Szybkie pytanie:</strong> "Napisz plan wycieczki do Rzymu."
+                            </div>
+                            <div class="good">
+                                <strong>Pytanie z detalami:</strong> "Jadę z żoną na 3 dni do Rzymu. Chcemy unikać
+                                tłumów, lubimy architekturę. Przygotuj plan zwiedzania."
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-image-wrapper">
+                        <img src="images/step_prompt.webp" alt="Ilustracja ulepszania zapytań AI" class="step-round-img"
+                            loading="lazy" width="320" height="320">
+                    </div>
+                </article>
+
+                <!-- Przystanek 4: Polana Możliwości (Zastosowania) -->
+                <article class="story-step right hidden-step feature-step">
+                    <div class="step-marker star">
+                        <div class="marker-pulse"></div>
+                        <span class="premium-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                </polygon>
+                            </svg></span>
+                    </div>
+                    <div class="step-content">
+                        <h3>Polana możliwości: Do czego Ci się to przyda?</h3>
+                        <p>Rozejrzyj się! AI możesz wykorzystać na wiele sposobów:</p>
+                        <ul class="feature-list">
+                            <li><strong>📚 Nauka:</strong> Notatki z artykułów, tłumaczenie trudnych koncepcji.</li>
+                            <li><strong>💼 Praca:</strong> Szkice e-maili, burze mózgów, analiza tekstów.</li>
+                            <li><strong>🎨 Twórczość:</strong> Szukanie inspiracji, organizacja projektów.</li>
+                            <li><strong>💻 Codzienność:</strong> Pisanie formuł do Excela, planowanie budżetu.</li>
+                        </ul>
+                    </div>
+                    <div class="step-image-wrapper">
+                        <img src="images/step_possibilities.webp" alt="Ilustracja zastosowań AI" class="step-round-img"
+                            loading="lazy" width="320" height="320">
+                    </div>
+                </article>
+
+                <!-- Przystanek 5 -->
+                <article class="story-step left hidden-step">
+                    <div class="step-marker">
+                        <div class="marker-pulse"></div>
+                        <span>4</span>
+                    </div>
+                    <div class="step-content">
+                        <h3>Uważaj na zmyślanie (Halucynacje)</h3>
+                        <p>Sztuczna inteligencja potrafi czasami generować nieprawdziwe informacje, robiąc to z ogromną
+                            pewnością siebie. Eksperci nazywają to zjawisko <strong>halucynowaniem</strong>. Dlatego
+                            zawsze weryfikuj kluczowe fakty w tradycyjnej wyszukiwarce.</p>
+                    </div>
+                    <div class="step-image-wrapper">
+                        <img src="images/step_verify.webp" alt="Ilustracja weryfikacji faktów z AI"
+                            class="step-round-img" loading="lazy" width="320" height="320">
+                    </div>
+                </article>
+
+                <!-- Przystanek 6: Most Bezpieczeństwa -->
+                <article class="story-step right hidden-step warning-step">
+                    <div class="step-marker shield">
+                        <div class="marker-pulse"></div>
+                        <span class="premium-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg></span>
+                    </div>
+                    <div class="step-content">
+                        <h3>Most ostrożności: Zasady bezpieczeństwa</h3>
+                        <div class="safety-rules">
+                            <p><strong>Chroń swoją prywatność:</strong> Pamiętaj, aby nie wklejać do czatu haseł,
+                                numerów PESEL czy prywatnych dokumentów z pracy.<br><br>
+                                <strong>Kluczowe decyzje zostaw ludziom:</strong> Sprawy dotyczące Twojego zdrowia,
+                                prawa czy oszczędności życia zawsze konsultuj z prawdziwymi specjalistami.<br><br>
+                                <strong>AI to pomocnik, nie wyrocznia:</strong> Traktuj odpowiedzi jako podpowiedzi lub
+                                szkice, a nie jako ostateczną prawdę.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="step-image-wrapper">
+                        <img src="images/step_security.webp" alt="Ilustracja zasad bezpieczeństwa z AI"
+                            class="step-round-img" loading="lazy" width="320" height="320">
+                    </div>
+                </article>
+
+                <!-- Przystanek 7: Meta (Ekskluzywny Redesign) -->
+                <article class="story-step center hidden-step meta-step">
+                    <div class="step-marker end">
+                        <div class="marker-pulse"></div>
+                        <span class="premium-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
+                                <line x1="4" x2="4" y1="22" y2="15"></line>
+                            </svg></span>
+                    </div>
+                    <div class="step-content premium-meta-card">
+                        <span class="meta-badge">Zwieńczenie podróży</span>
+                        <h2>Gratulacje, dotarliśmy do celu!</h2>
+
+                        <div class="golden-rule-card">
+                            <span class="quote-mark">"</span>
+                            <p class="golden-rule-text">
+                                Nie próbuj opanować wszystkiego w jeden dzień. Wybierz jedno proste narzędzie i po
+                                prostu zacznij z nim rozmawiać o codziennych sprawach.
+                            </p>
+                        </div>
+
+                        <div class="cta-section-wrapper">
+                            <h3>Wybierz swój pierwszy krok:</h3>
+
+                            <div class="cta-grid">
+                                <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer"
+                                    class="cta-card brand-chatgpt wow-delay-1">
+                                    <div class="cta-card-header">
+                                        <img src="images/icon_chatgpt.svg" class="cta-img" alt="ChatGPT">
+                                        <h4>ChatGPT</h4>
+                                    </div>
+                                    <p>Najbardziej popularny, świetny do burzy mózgów i luźnych rozmów.</p>
+                                    <span class="cta-link">Otwórz czat →</span>
+                                </a>
+
+                                <a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer"
+                                    class="cta-card brand-gemini wow-delay-2">
+                                    <div class="cta-card-header">
+                                        <img src="images/icon_gemini.svg" class="cta-img" alt="Gemini">
+                                        <h4>Gemini</h4>
+                                    </div>
+                                    <p>Asystent od Google. Błyskawiczny dostęp do wyszukiwarki i faktów.</p>
+                                    <span class="cta-link">Otwórz czat →</span>
+                                </a>
+
+                                <a href="https://claude.ai/" target="_blank" rel="noopener noreferrer"
+                                    class="cta-card brand-claude wow-delay-3">
+                                    <div class="cta-card-header">
+                                        <img src="images/icon_claude.svg" class="cta-img" alt="Claude">
+                                        <h4>Claude</h4>
+                                    </div>
+                                    <p>Wyjątkowo precyzyjny w pisaniu tekstów, świetny do analizy dokumentów.</p>
+                                    <span class="cta-link">Otwórz czat →</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="author-info">
+                <strong>O autorze</strong>
+                <p>Pomagam stawiać pierwsze kroki w świecie nowych technologii. Wierzę, że sztuczna inteligencja jest
+                    dla każdego, o ile wytłumaczy się ją prostym językiem – bez technicznego żargonu.</p>
+            </div>
+            <div class="footer-links">
+                <a href="mailto:apkmasondev@gmail.com">Kontakt</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
