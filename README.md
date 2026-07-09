@@ -22,3 +22,5 @@ Projekt jest celowo maksymalnie uproszczony, aby ułatwić modyfikacje i szybkie
   5. Przełącznik jasnego/ciemnego motywu oparty o `localStorage`.
 - `images/` - Folder z grafikami. Ze względów optymalizacyjnych wszystkie ciężkie ilustracje 3D (claymation) używają skompresowanego formatu `.webp`, a ikony i logotypy narzędzi oparte są wyłącznie o wektorowe pliki `.svg` (brak ociężałych plików PNG).
 - `favicon.svg` - Prosta favicona wektorowa zrobiona z użyciem SVG.
+- `robots.txt` - Plik konfiguracyjny dla robotów indeksujących (m.in. Googlebot).
+- `sitemap.xml` - Mapa witryny wspierająca pozycjonowanie (SEO).

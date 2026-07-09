@@ -4,7 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jak zacząć korzystać z AI? Twoja Opowieść</title>
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <title>Poznaj AI – Twój pierwszy krok w świat sztucznej inteligencji</title>
     <meta name="description"
         content="Prosty, przyjazny przewodnik dla osób, które nigdy nie używały AI. Krok po kroku przez świat sztucznej inteligencji.">
     <!-- Meta tags dla SEO i Social Media -->
@@ -13,6 +21,7 @@
         content="Prosty, przyjazny przewodnik dla osób, które nigdy nie używały AI. Krok po kroku przez świat sztucznej inteligencji.">
     <meta property="og:image" content="https://poznaj-ai.pl/images/og-preview.jpg">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://poznaj-ai.pl/">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="canonical" href="https://poznaj-ai.pl/">
 
@@ -31,6 +40,7 @@
     <noscript>
         <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     </noscript>
+    <script src="app.js" defer></script>
 </head>
 
 <body>
@@ -50,7 +60,7 @@
     <header class="sticky-nav">
         <div class="nav-container">
             <a href="#" class="logo">
-                <img src="favicon.svg" alt="Logo" class="logo-icon" width="28" height="28">
+                <img src="favicon.svg" alt="Poznaj AI – logo" class="logo-icon" width="28" height="28">
                 <span>Poznaj AI</span>
             </a>
             <div class="nav-actions">
@@ -60,9 +70,9 @@
                     </ul>
                 </nav>
                 <button id="theme-toggle" class="theme-toggle" aria-label="Przełącz motyw" title="Przełącz motyw">
-                    <span class="icon-sun premium-icon"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
+                    <span class="icon-sun premium-icon"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="4" />
                             <path d="M12 2v2" />
                             <path d="M12 20v2" />
@@ -73,9 +83,9 @@
                             <path d="m6.34 17.66-1.41 1.41" />
                             <path d="m19.07 4.93-1.41 1.41" />
                         </svg></span>
-                    <span class="icon-moon premium-icon"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
+                    <span class="icon-moon premium-icon"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
                         </svg></span>
                 </button>
@@ -116,12 +126,15 @@
                                     <path d="M17 19h4" />
                                 </svg></span>
                             <span class="typewriter-text" id="hero-typewriter"></span><span class="cursor">|</span>
+                            <div class="thinking-indicator"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="scroll-indicator reveal-text-delay-2">
+            <!-- Przystanek STARTOWY - Zaczynamy (poza głowną linią w tle) -->
+            <div class="scroll-indicator-text reveal-text-delay-2">
                 <span>Zaczynamy</span>
                 <div class="arrow-down">↓</div>
             </div>
@@ -133,6 +146,20 @@
 
                 <!-- Centralna linia i jej maska odsłaniająca kropeczki w miarę scrolla -->
                 <div class="story-line-wrapper">
+                    <!-- Odzyskana ikonka startu (widoczna od razu i rysująca się) -->
+                    <article class="story-step is-active start-node">
+                        <div class="step-marker glass">
+                            <div class="marker-pulse"></div>
+                            <span class="premium-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </span>
+                        </div>
+                    </article>
                     <!-- Kropkowana linia tła -->
                     <div class="story-line-dashed"></div>
                     <!-- Linia rysująca się -->
@@ -149,8 +176,13 @@
                         <h3>Wybierz jedno narzędzie</h3>
                         <p>Na początek wędrówki nie potrzebujesz wielkiego ekwipunku. Nie musisz znać wszystkich
                             dostępnych modeli i aplikacji. Jedno darmowe narzędzie wystarczy. Najpopularniejsze to
-                            <strong>ChatGPT</strong>, <strong>Gemini</strong> (od Google) lub <strong>Claude</strong>.
-                            Wybierz dowolne z nich.</p>
+                            <span class="inline-tool-badge" data-tooltip="Mistrz luźnych rozmów i burzy mózgów" tabindex="0" role="button" aria-describedby="tooltip-chatgpt"><img src="images/icon_chatgpt.svg" alt="" width="16"
+                                    height="16">ChatGPT</span>, <span class="inline-tool-badge" data-tooltip="Błyskawiczny dostęp do sieci i faktów" tabindex="0" role="button" aria-describedby="tooltip-gemini"><img
+                                    src="images/icon_gemini.svg" alt="" width="16" height="16">Gemini</span> lub <span
+                                class="inline-tool-badge" data-tooltip="Genialny w analizie długich dokumentów" tabindex="0" role="button" aria-describedby="tooltip-claude"><img src="images/icon_claude.svg" alt="" width="16"
+                                    height="16">Claude</span>.
+                            Wybierz dowolne z nich.
+                        </p>
                     </div>
                     <div class="step-image-wrapper">
                         <img src="images/step_choose.webp" alt="Ilustracja wyboru narzędzia AI" class="step-round-img"
@@ -169,9 +201,32 @@
                         <p>Zamiast szukać skomplikowanych komend, po prostu napisz do AI tak, jakbyś rozmawiał z żywym
                             ekspertem. Takie zapytanie w branży nazywamy <strong>promptem</strong>. Pisz naturalnie, bez
                             żargonu:</p>
-                        <ul>
-                            <li><em>"Wytłumacz mi, jak działa fotowoltaika w 3 prostych zdaniach."</em></li>
-                            <li><em>"Zaproponuj szybki obiad z makaronu i pomidorów."</em></li>
+                        <ul class="prompt-examples">
+                            <li>
+                                <span class="prompt-icon premium-icon">
+                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path
+                                            d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.9 1.2 1.5 1.5 2.5" />
+                                        <path d="M9 18h6" />
+                                        <path d="M10 22h4" />
+                                    </svg>
+                                </span>
+                                <em>"Wytłumacz mi, jak działa fotowoltaika w 3 prostych zdaniach."</em>
+                            </li>
+                            <li>
+                                <span class="prompt-icon premium-icon">
+                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" />
+                                        <path d="M7 2v20" />
+                                        <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" />
+                                    </svg>
+                                </span>
+                                <em>"Zaproponuj szybki obiad z makaronu i pomidorów."</em>
+                            </li>
                         </ul>
                     </div>
                     <div class="step-image-wrapper">
@@ -190,13 +245,42 @@
                         <h3>Rozmowa na wyższym poziomie</h3>
                         <p>Gdy poczujesz się pewniej, zacznij dodawać więcej szczegółów. Dobra wiadomość do AI powinna
                             opisywać Twoją sytuację, cel i to, jak ma wyglądać odpowiedź.</p>
-                        <div class="compare-box">
-                            <div class="bad">
-                                <strong>Szybkie pytanie:</strong> "Napisz plan wycieczki do Rzymu."
+                        <div class="prompt-fade-slider">
+                            <div class="prompt-panels">
+                                <div class="bad-panel prompt-panel">
+                                    <div class="prompt-content">
+                                        <span class="prompt-badge bad-badge">Szybkie pytanie</span>
+                                        <p>"Napisz plan wycieczki do Rzymu."</p>
+                                    </div>
+                                </div>
+                                <div class="good-panel prompt-panel">
+                                    <div class="prompt-content">
+                                        <span class="prompt-badge good-badge">Pytanie z detalami</span>
+                                        <p>"Jadę z żoną na 3 dni do Rzymu. Chcemy unikać tłumów, lubimy architekturę.
+                                            Przygotuj plan zwiedzania."</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="good">
-                                <strong>Pytanie z detalami:</strong> "Jadę z żoną na 3 dni do Rzymu. Chcemy unikać
-                                tłumów, lubimy architekturę. Przygotuj plan zwiedzania."
+                            <div class="prompt-slider-controls">
+                                <span class="control-label">Słabe</span>
+                                <span class="control-label">Pro</span>
+                                <div class="track-wrapper">
+                                    <div class="track-fill"></div>
+                                    <input type="range" class="prompt-slider-input" min="0" max="100" value="0"
+                                        aria-label="Porównaj słaby i dobry prompt">
+                                    <div class="slider-thumb">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M15 18l-6-6 6-6" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M9 18l6-6-6-6" />
+                                        </svg>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -223,19 +307,43 @@
                         <p>Rozejrzyj się! AI możesz wykorzystać na wiele sposobów:</p>
                         <ul class="feature-list">
                             <li>
-                                <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                                <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                                </svg>
                                 <div><strong>Nauka:</strong> Notatki z artykułów, tłumaczenie trudnych koncepcji.</div>
                             </li>
                             <li>
-                                <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                                <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
+                                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                                </svg>
                                 <div><strong>Praca:</strong> Szkice e-maili, burze mózgów, analiza tekstów.</div>
                             </li>
                             <li>
-                                <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
+                                <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+                                    <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+                                    <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+                                    <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+                                    <path
+                                        d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" />
+                                </svg>
                                 <div><strong>Twórczość:</strong> Szukanie inspiracji, organizacja projektów.</div>
                             </li>
                             <li>
-                                <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16"/></svg>
+                                <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16" />
+                                </svg>
                                 <div><strong>Codzienność:</strong> Pisanie formuł do Excela, planowanie budżetu.</div>
                             </li>
                         </ul>
@@ -252,8 +360,9 @@
                         <div class="marker-pulse"></div>
                         <span>4</span>
                     </div>
-                    <div class="step-content">
-                        <h3>Uważaj na zmyślanie (Halucynacje)</h3>
+                    <div class="step-content hallucination-card">
+                        <h3>Uważaj na zmyślanie <span class="glitch-text" data-text="(Halucynacje)">(Halucynacje)</span>
+                        </h3>
                         <p>Sztuczna inteligencja potrafi czasami generować nieprawdziwe informacje, robiąc to z ogromną
                             pewnością siebie. Eksperci nazywają to zjawisko <strong>halucynowaniem</strong>. Dlatego
                             zawsze weryfikuj kluczowe fakty w tradycyjnej wyszukiwarce.</p>
@@ -277,13 +386,40 @@
                     <div class="step-content">
                         <h3>Most ostrożności: Zasady bezpieczeństwa</h3>
                         <div class="safety-rules">
-                            <p><strong>Chroń swoją prywatność:</strong> Pamiętaj, aby nie wklejać do czatu haseł,
-                                numerów PESEL czy prywatnych dokumentów z pracy.<br><br>
-                                <strong>Kluczowe decyzje zostaw ludziom:</strong> Sprawy dotyczące Twojego zdrowia,
-                                prawa czy oszczędności życia zawsze konsultuj z prawdziwymi specjalistami.<br><br>
-                                <strong>AI to pomocnik, nie wyrocznia:</strong> Traktuj odpowiedzi jako podpowiedzi lub
-                                szkice, a nie jako ostateczną prawdę.
-                            </p>
+                            <ul class="feature-list">
+                                <li>
+                                    <svg class="feature-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                    </svg>
+                                    <div><strong>Chroń swoją prywatność:</strong> Pamiętaj, aby nie wklejać do czatu
+                                        haseł, numerów PESEL czy prywatnych dokumentów z pracy.</div>
+                                </li>
+                                <li>
+                                    <svg class="feature-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <path d="M12 16v-4" />
+                                        <path d="M12 8h.01" />
+                                    </svg>
+                                    <div><strong>Kluczowe decyzje zostaw ludziom:</strong> Sprawy dotyczące Twojego
+                                        zdrowia, prawa czy oszczędności życia zawsze konsultuj z prawdziwymi
+                                        specjalistami.</div>
+                                </li>
+                                <li>
+                                    <svg class="feature-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <line x1="12" y1="8" x2="12" y2="12" />
+                                        <line x1="12" y1="16" x2="12.01" y2="16" />
+                                    </svg>
+                                    <div><strong>AI to pomocnik, nie wyrocznia:</strong> Traktuj odpowiedzi jako
+                                        podpowiedzi lub szkice, a nie jako ostateczną prawdę.</div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     <div class="step-image-wrapper">
@@ -304,8 +440,8 @@
                             </svg></span>
                     </div>
                     <div class="step-content premium-meta-card">
-                        <span class="meta-badge">Zwieńczenie podróży</span>
-                        <h2>Gratulacje, dotarliśmy do celu!</h2>
+                        <span class="meta-badge">Zacznij Tworzyć</span>
+                        <h3 class="gradient-heading final-heading">Gratulacje! Znasz podstawy AI.</h3>
 
                         <div class="golden-rule-card">
                             <span class="quote-mark">"</span>
@@ -322,31 +458,34 @@
                                 <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer"
                                     class="cta-card brand-chatgpt wow-delay-1">
                                     <div class="cta-card-header">
-                                        <img src="images/icon_chatgpt.svg" class="cta-img" alt="ChatGPT">
+                                        <img src="images/icon_chatgpt.svg" class="cta-img" alt="ChatGPT" width="40"
+                                            height="40">
                                         <h4>ChatGPT</h4>
                                     </div>
                                     <p>Najbardziej popularny, świetny do burzy mózgów i luźnych rozmów.</p>
-                                    <span class="cta-link">Otwórz czat →</span>
+                                    <span class="cta-button">Otwórz czat <i>→</i></span>
                                 </a>
 
                                 <a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer"
                                     class="cta-card brand-gemini wow-delay-2">
                                     <div class="cta-card-header">
-                                        <img src="images/icon_gemini.svg" class="cta-img" alt="Gemini">
+                                        <img src="images/icon_gemini.svg" class="cta-img" alt="Gemini" width="40"
+                                            height="40">
                                         <h4>Gemini</h4>
                                     </div>
                                     <p>Asystent od Google. Błyskawiczny dostęp do wyszukiwarki i faktów.</p>
-                                    <span class="cta-link">Otwórz czat →</span>
+                                    <span class="cta-button">Otwórz czat <i>→</i></span>
                                 </a>
 
                                 <a href="https://claude.ai/" target="_blank" rel="noopener noreferrer"
                                     class="cta-card brand-claude wow-delay-3">
                                     <div class="cta-card-header">
-                                        <img src="images/icon_claude.svg" class="cta-img" alt="Claude">
+                                        <img src="images/icon_claude.svg" class="cta-img" alt="Claude" width="40"
+                                            height="40">
                                         <h4>Claude</h4>
                                     </div>
                                     <p>Wyjątkowo precyzyjny w pisaniu tekstów, świetny do analizy dokumentów.</p>
-                                    <span class="cta-link">Otwórz czat →</span>
+                                    <span class="cta-button">Otwórz czat <i>→</i></span>
                                 </a>
                             </div>
                         </div>
@@ -370,7 +509,6 @@
         </div>
     </footer>
 
-    <script src="app.js"></script>
 </body>
 
 </html>
