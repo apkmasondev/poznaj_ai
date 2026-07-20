@@ -277,12 +277,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         const centerX = rect.width / 2;
                         const centerY = rect.height / 2;
                         
-                        // Obliczanie rotacji (max 10 stopni w każdym kierunku)
                         const rotateX = ((y - centerY) / centerY) * -10; 
                         const rotateY = ((x - centerX) / centerX) * 10;
                         
                         card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-                        card.style.transition = 'none'; // Wyłączamy transition podczas ruchu
                         isTiltTicking = false;
                     });
                     isTiltTicking = true;
@@ -291,12 +289,6 @@ document.addEventListener("DOMContentLoaded", () => {
             
             card.addEventListener('mouseleave', () => {
                 card.style.transform = '';
-                // Przywracamy transition przy opuszczaniu
-                card.style.transition = 'all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1)';
-            });
-            
-            card.addEventListener('mouseenter', () => {
-                card.style.transition = 'transform 0.1s ease'; // Krótka animacja przy wejściu kursora
             });
         });
     }
@@ -360,15 +352,21 @@ document.addEventListener("DOMContentLoaded", () => {
             glow.className = 'img-glow-overlay';
             container.appendChild(glow);
 
-            // Nasłuchiwanie myszki
+            // Nasłuchiwanie myszki (z rAF throttle)
+            let isGlowTicking = false;
             container.addEventListener('mousemove', (e) => {
-                const rect = container.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                // Przekazanie pozycji myszki do CSS
-                glow.style.setProperty('--img-mouse-x', `${x}px`);
-                glow.style.setProperty('--img-mouse-y', `${y}px`);
+                if (!isGlowTicking) {
+                    window.requestAnimationFrame(() => {
+                        const rect = container.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        
+                        glow.style.setProperty('--img-mouse-x', `${x}px`);
+                        glow.style.setProperty('--img-mouse-y', `${y}px`);
+                        isGlowTicking = false;
+                    });
+                    isGlowTicking = true;
+                }
             });
         });
     }

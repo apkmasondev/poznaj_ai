@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-07-20
+### Fixed (Performance Audit)
+- **CSS**: Replaced remaining `transition: all` on `.cta-button` with explicit properties to avoid layout thrashing.
+- **CSS**: Fixed bare `transition: 0.2s` shorthand on `nav a` — added explicit `color` property and easing function.
+- **CSS**: Removed `filter: drop-shadow()` from continuously running `@keyframes iconWiggle` — filter repaints entire compositing layer every frame.
+- **CSS**: Added `contain: layout style` on `.img-interactive-container` to isolate repaints from glow overlay.
+- **CSS**: Added `will-change: background` to `.mouse-spotlight` which repaints on every mouse move.
+- **JS**: Eliminated inline `style.transition` manipulation on CTA card tilt (violated "State via CSS classes" rule) — CSS handles transitions natively.
+- **JS**: Added `requestAnimationFrame` throttle to image glow `mousemove` handler — previously fired on every pixel of mouse movement causing excessive style recalculations.
+
 ## [Unreleased] - 2026-07-09
 ### Changed & Optimized
 - **Advanced CSS Optimizations**:
