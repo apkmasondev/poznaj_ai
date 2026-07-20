@@ -9,3 +9,6 @@ brief_strona_ai.md
 
 # Ewentualne logi
 npm-debug.log
+
+# Ustawienia Agenta AI
+.agents/
