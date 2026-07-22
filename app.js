@@ -39,16 +39,36 @@ document.addEventListener("DOMContentLoaded", () => {
     const steps = document.querySelectorAll('.story-step');
 
     if (storySection && pathFill && !prefersReducedMotion) {
+        let sectionTop = 0;
+        let sectionHeight = 0;
+        let cachedMarkerTops = [];
+
+        const cacheTimelineMetrics = () => {
+            const scrollY = window.scrollY;
+            const rect = storySection.getBoundingClientRect();
+            sectionTop = scrollY + rect.top;
+            sectionHeight = rect.height;
+
+            cachedMarkerTops = Array.from(steps).map(step => {
+                const marker = step.querySelector('.step-marker');
+                if (!marker) return null;
+                const markerRect = marker.getBoundingClientRect();
+                return {
+                    step,
+                    centerTop: scrollY + markerRect.top + (markerRect.height / 2)
+                };
+            }).filter(Boolean);
+        };
+
+        cacheTimelineMetrics();
+        window.addEventListener('resize', cacheTimelineMetrics, { passive: true });
         
         const updateTimeline = () => {
             const scrollY = window.scrollY;
             const windowHeight = window.innerHeight;
-            
-            const rect = storySection.getBoundingClientRect();
-            const sectionTop = scrollY + rect.top; 
             const viewportCenter = scrollY + (windowHeight / 2);
             
-            let fillPercentage = ((viewportCenter - sectionTop) / rect.height) * 100;
+            let fillPercentage = ((viewportCenter - sectionTop) / sectionHeight) * 100;
             fillPercentage = Math.max(0, Math.min(100, fillPercentage));
             
             // Particle trail (Ogon cząsteczek świetlnych wzdłuż linii)
@@ -88,11 +108,12 @@ document.addEventListener("DOMContentLoaded", () => {
                         const duration = 1200 + Math.random() * 1800;
                         sparkle.style.animationDuration = `${duration}ms`;
                         
-                        pathFill.parentElement.appendChild(sparkle);
-                        setTimeout(() => {
+                        sparkle.addEventListener('animationend', () => {
                             sparkle.remove();
                             activeSparks--;
-                        }, duration);
+                        }, { once: true });
+
+                        pathFill.parentElement.appendChild(sparkle);
                     }
                 }
             }
@@ -100,14 +121,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             pathFill.style.height = `${fillPercentage}%`;
 
-            steps.forEach(step => {
-                const marker = step.querySelector('.step-marker');
-                if(!marker) return;
-                
-                const markerRect = marker.getBoundingClientRect();
-                const markerCenter = scrollY + markerRect.top + (markerRect.height / 2);
-                
-                if (viewportCenter > markerCenter - 30) {
+            cachedMarkerTops.forEach(({ step, centerTop }) => {
+                if (viewportCenter > centerTop - 30) {
                     step.classList.add('is-active');
                 } else {
                     step.classList.remove('is-active');
@@ -400,13 +415,12 @@ document.addEventListener("DOMContentLoaded", () => {
                         sparkle.style.setProperty('--ty', `${ty}px`);
                         
                         const duration = 1200 + Math.random() * 1500;
-                        sparkle.style.animationDuration = `${duration}ms`;
-                        
-                        pathFillEl.parentElement.appendChild(sparkle);
-                        setTimeout(() => {
+                        sparkle.addEventListener('animationend', () => {
                             sparkle.remove();
                             activeSparks--;
-                        }, duration);
+                        }, { once: true });
+
+                        pathFillEl.parentElement.appendChild(sparkle);
                     }
                 }
             };

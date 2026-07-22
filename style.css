@@ -658,6 +658,8 @@ nav a {
     font-weight: 600;
     color: var(--text-color);
     max-width: 90%;
+    min-width: 280px;
+    contain: layout inline-size;
     transform: translateY(10px);
     transition: transform 0.3s ease;
 }
@@ -840,9 +842,10 @@ nav a {
     background: repeating-linear-gradient(to bottom, var(--accent-color) 0, var(--accent-color) 12px, transparent 12px, transparent 24px);
     border-radius: 3px;
     transition: height 0.1s ease-out;
+    will-change: height;
     -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
     mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
-    filter: drop-shadow(0 0 4px var(--accent-color));
+    box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.6);
 }
 
 .particle-spark {

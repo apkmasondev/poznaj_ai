@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-07-22
+### Fixed (60 FPS Performance & Layout Thrashing Audit)
+- **JS**: Cached timeline element metrics (`sectionTop`, `sectionHeight`, marker Y-positions) on initial load and window `resize` events to eliminate synchronous `getBoundingClientRect()` layout thrashing inside scroll handlers.
+- **JS**: Replaced JavaScript `setTimeout` particle timers with native CSS `animationend` event listeners for sparkle cleanup to prevent main thread timer fragmentation and GC pauses.
+- **CSS**: Replaced continuous rasterization `filter: drop-shadow(...)` on `.story-line-fill` with GPU-composited `will-change: height` and `box-shadow`.
+- **CSS**: Added `min-width: 280px` and `contain: layout inline-size` to `.hero-chat-bubble` to stabilize hero typography container and eliminate CLS during typewriter animation.
+
 ## [Unreleased] - 2026-07-20
 ### Fixed (Performance Audit)
 - **CSS**: Replaced remaining `transition: all` on `.cta-button` with explicit properties to avoid layout thrashing.
