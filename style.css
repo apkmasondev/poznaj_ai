@@ -658,8 +658,6 @@ nav a {
     font-weight: 600;
     color: var(--text-color);
     max-width: 90%;
-    min-width: 280px;
-    contain: layout inline-size;
     transform: translateY(10px);
     transition: transform 0.3s ease;
 }
