@@ -39,39 +39,32 @@ document.addEventListener("DOMContentLoaded", () => {
     const steps = document.querySelectorAll('.story-step');
 
     if (storySection && pathFill && !prefersReducedMotion) {
-        let sectionTop = 0;
-        let sectionHeight = 0;
-        let cachedMarkerTops = [];
-
-        const cacheTimelineMetrics = () => {
-            const scrollY = window.scrollY;
-            const rect = storySection.getBoundingClientRect();
-            sectionTop = scrollY + rect.top;
-            sectionHeight = rect.height;
-
-            cachedMarkerTops = Array.from(steps).map(step => {
-                const marker = step.querySelector('.step-marker');
-                if (!marker) return null;
-                const markerRect = marker.getBoundingClientRect();
-                return {
-                    step,
-                    centerTop: scrollY + markerRect.top + (markerRect.height / 2)
-                };
-            }).filter(Boolean);
-        };
-
-        cacheTimelineMetrics();
-        window.addEventListener('resize', cacheTimelineMetrics, { passive: true });
         
         const updateTimeline = () => {
             const scrollY = window.scrollY;
             const windowHeight = window.innerHeight;
             const viewportCenter = scrollY + (windowHeight / 2);
             
+            // Faza 1: BATCH READ (Wszystkie pomiary geometryczne przed zmianami w DOM)
+            const rect = storySection.getBoundingClientRect();
+            const sectionTop = scrollY + rect.top; 
+            const sectionHeight = rect.height;
+            
             let fillPercentage = ((viewportCenter - sectionTop) / sectionHeight) * 100;
             fillPercentage = Math.max(0, Math.min(100, fillPercentage));
             
-            // Particle trail (Ogon cząsteczek świetlnych wzdłuż linii)
+            const stepStates = Array.from(steps).map(step => {
+                const marker = step.querySelector('.step-marker');
+                if (!marker) return null;
+                const markerRect = marker.getBoundingClientRect();
+                const markerCenter = scrollY + markerRect.top + (markerRect.height / 2);
+                return {
+                    step,
+                    isActive: viewportCenter > markerCenter - 30
+                };
+            }).filter(Boolean);
+
+            // Faza 2: BATCH WRITE (Modyfikacje DOM po wykonaniu wszystkich pomiarów)
             if (pathFill.dataset.lastFill !== undefined) {
                 const last = parseFloat(pathFill.dataset.lastFill);
                 const diff = fillPercentage - last;
@@ -118,11 +111,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
             pathFill.dataset.lastFill = fillPercentage;
-
             pathFill.style.height = `${fillPercentage}%`;
 
-            cachedMarkerTops.forEach(({ step, centerTop }) => {
-                if (viewportCenter > centerTop - 30) {
+            stepStates.forEach(({ step, isActive }) => {
+                if (isActive) {
                     step.classList.add('is-active');
                 } else {
                     step.classList.remove('is-active');
@@ -141,6 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }, { passive: true });
         
+        window.addEventListener('load', updateTimeline, { passive: true });
         updateTimeline();
     } else if (prefersReducedMotion && pathFill) {
         pathFill.style.height = '100%';
